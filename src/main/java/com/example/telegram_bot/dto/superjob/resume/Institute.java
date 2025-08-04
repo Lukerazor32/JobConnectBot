@@ -1,0 +1,6 @@
+package com.example.telegram_bot.dto.superjob.resume;
+
+public class Institute {
+    private int id;
+    private String title;
+}

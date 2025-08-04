@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  job_connect:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'admin'
+      POSTGRES_DB: 'job_connect'
+    ports:
+      - '3307:3307'

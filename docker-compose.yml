@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  job_connect:
+    depends_on:
+      - job_connect_db
+    build:
+      context: .
+    image: ruthlessly23/job_connect
+    restart: always
+    environment:
+      BOT_NAME: ${BOT_NAME}
+      BOT_TOKEN: ${BOT_TOKEN}
+      BOT_DB_USERNAME: ${BOT_DB_USERNAME}
+      BOT_DB_PASSWORD: ${BOT_DB_PASSWORD}
+    networks:
+      - postgres
+
+  job_connect_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${BOT_DB_USERNAME}
+      POSTGRES_PASSWORD: ${BOT_DB_PASSWORD}
+      POSTGRES_DB: 'job_connect'
+    ports:
+      - '5432:5432'
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge
